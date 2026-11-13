@@ -21,22 +21,46 @@ export const portfolioData = {
     ],
     experiences: [
       {
-        role: 'President',
-        organization: 'Argos Club UKM — Universitas Kristen Maranatha',
-        period: '2024 – Present',
-        detail: 'Leading student club operations, technical workshops, and community initiatives.',
+        organization: 'Saint Ursula Junior High School',
+        location: 'Bandung, Indonesia',
+        role: 'Private Tutor (Part-time)',
+        period: 'August 2026 – Present',
+        points: [
+          'Delivered individual tutoring in Mathematics, Physics, and Chemistry for junior high school students.',
+          'Designed tailored study materials and practice problems to reinforce core STEM concepts and exam performance.',
+        ],
       },
       {
-        role: 'Full-Stack Software Developer',
-        organization: 'Academic & Community Projects',
-        period: '2024 – Present',
-        detail: 'Built web systems using Laravel, React, Node.js, and MySQL including ReWardrobe and university lab management tools.',
+        organization: 'Maranatha Christian University Choir (MCUC)',
+        location: 'Bandung, Indonesia',
+        role: 'Junior Choral Director',
+        period: 'January 2026 – Present',
+        points: [
+          'Helped in vocal training, curated song repertoires, and rehearsal schedules across various regular performances, special programs, and services.',
+          'Produced and distributed custom MIDI audio guides (if the song guide is not available publicly) to accelerate the learning process and enhance pitch accuracy for the singers.',
+          'Managed sheet music inventory system, overseeing physical cataloging (A-Z), and the streamlined distribution of digital materials to the team.',
+        ],
       },
       {
-        role: 'Choral Ensemble Director',
-        organization: 'University Choral Ensembles',
-        period: '2023 – Present',
-        detail: 'Directing rehearsals, vocal balancing, and live campus performances.',
+        organization: 'Informatics Engineering Student Association (HMIF)',
+        location: 'Bandung, Indonesia',
+        role: 'Staff of Partnerships & Innovations',
+        period: 'January 2025 – February 2026',
+        points: [
+          'Built strategic relationships and partnerships with industry sponsors, alumni, and/or other communities to support events and tech initiatives issued by the student association.',
+          'Executed merchandise and fundraising campaigns to sustain operational budgets for the student association.',
+        ],
+      },
+      {
+        organization: 'Lifeskills Indonesia (Part of Satu Persen)',
+        location: 'Bandung, Indonesia',
+        role: 'Head Division of Event Operations',
+        period: 'December 2024 – September 2025',
+        points: [
+          'Design and implement event strategies aligning to the organizational goals.',
+          'Supervise and monitor the tasks given to the EO members to ensure smooth workflows.',
+          'Create an agenda for further meetings & discussions, and point out important tasks to be completed.',
+        ],
       },
     ],
     otherInterests: [

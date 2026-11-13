@@ -47,20 +47,34 @@ export default function AboutWindow({ onOpenContact }) {
           </div>
         </section>
 
-        <section className="space-y-2.5">
+        <section className="space-y-3">
           <SectionTitle>Experiences</SectionTitle>
-          <div className="border-l-2 border-zinc-200 dark:border-zinc-700 pl-3.5 space-y-3">
+          <div className="border-l-2 border-zinc-200 dark:border-zinc-700 pl-3.5 space-y-4">
             {profile.experiences.map((exp) => (
-              <div key={`${exp.role}-${exp.organization}`}>
-                <p className="font-medium text-zinc-800 dark:text-zinc-100 text-sm">
-                  {exp.role}{' '}
-                  <span className="text-xs font-normal text-zinc-500 dark:text-zinc-400">
-                    — {exp.organization} ({exp.period})
+              <div key={`${exp.role}-${exp.organization}`} className="space-y-1">
+                <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-0.5 sm:gap-3">
+                  <span className="font-semibold text-zinc-800 dark:text-zinc-100 text-[13px]">
+                    {exp.organization}
                   </span>
-                </p>
-                <p className="mt-0.5 text-xs sm:text-[13px] text-zinc-600 dark:text-zinc-300">
-                  {exp.detail}
-                </p>
+                  <span className="font-mono text-[11px] text-zinc-500 dark:text-zinc-400 sm:text-right shrink-0">
+                    {exp.location}
+                  </span>
+                </div>
+
+                <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-0.5 sm:gap-3">
+                  <span className="text-xs font-medium text-[#d97706] dark:text-[#7dd3fc]">
+                    {exp.role}
+                  </span>
+                  <span className="font-mono text-[11px] text-zinc-400 dark:text-zinc-500 sm:text-right shrink-0">
+                    {exp.period}
+                  </span>
+                </div>
+
+                <ul className="list-disc list-outside ml-4 pt-0.5 space-y-1 text-xs text-zinc-600 dark:text-zinc-300 leading-relaxed text-justify">
+                  {exp.points.map((point) => (
+                    <li key={point}>{point}</li>
+                  ))}
+                </ul>
               </div>
             ))}
           </div>
