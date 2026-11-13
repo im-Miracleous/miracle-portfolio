@@ -209,27 +209,31 @@ export const portfolioData = {
   faqs: [
     {
       id: 'stack',
-      question: 'What is your preferred tech stack?',
+      question: 'What software do you use?',
       answer:
-        'For full-stack web apps I gravitate toward Laravel + MySQL when rapid, structured backend scaffolding matters, and React + Node.js/Express + Tailwind CSS for interactive frontends and lightweight APIs. For infrastructure, I rely on Linux, Docker, and Proxmox.',
+        'For this website? NodeJS + React, with Tailwind for the styling.',
     },
     {
       id: 'availability',
       question: 'Are you available for internships or collaborations?',
       answer:
-        'Yes! As an Informatics Engineering student based in Bandung, I am open to software engineering internships, freelance web development projects, and hackathon or research collaborations.',
+        'Yes! As an Informatics Engineering student based in Bandung, I am open to software engineering internships, freelance web development projects, and hackathon or research collaborations. Feel free to reach out to me!',
     },
     {
       id: 'homelab',
       question: 'What does your self-hosting / homelab setup look like?',
       answer:
-        'I run a Proxmox VE host at home with isolated Linux VMs and LXC containers managed via Docker Compose. It hosts personal web apps, reverse proxies, monitoring dashboards, and automated backup routines — giving me hands-on experience with networking and sysadmin workflows.',
+        'Usually via Proxmox and/or a VPS that I rented.',
     },
     {
-      id: 'choral',
-      question: 'Software engineering and choral directing — how do they connect?',
+      id: 'contact',
+      question: 'I sent you a message a BILLION YEARS AGO and you still haven\'t replied! :(',
       answer:
-        'Directing university choral ensembles and leading Argos Club UKM both revolve around listening closely, aligning people toward a shared tempo, and breaking complex pieces into clear, practiced sections — skills that translate directly to engineering teams.',
+        'Sorry if I don\'t get to your message! For urgent matters, work, and other invitations, please email me instead. Thank you!',
+      link: {
+        text: 'email me',
+        href: 'mailto:miracle.gerrald@gmail.com',
+      },
     },
   ],
 };

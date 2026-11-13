@@ -47,7 +47,20 @@ export default function FaqWindow({ soundEnabled }) {
 
               {isOpen && (
                 <div className="px-4 pb-3.5 pt-0.5 text-xs sm:text-[13px] text-zinc-600 dark:text-zinc-300 leading-relaxed border-t border-zinc-200/60 dark:border-zinc-800">
-                  {faq.answer}
+                  {faq.link && faq.answer.includes(faq.link.text) ? (
+                    <>
+                      {faq.answer.split(faq.link.text)[0]}
+                      <a
+                        href={faq.link.href}
+                        className="font-medium underline text-[#f59e0b] dark:text-[#7dd3fc] hover:opacity-80"
+                      >
+                        {faq.link.text}
+                      </a>
+                      {faq.answer.split(faq.link.text).slice(1).join(faq.link.text)}
+                    </>
+                  ) : (
+                    faq.answer
+                  )}
                 </div>
               )}
             </div>
