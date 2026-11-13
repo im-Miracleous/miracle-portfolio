@@ -1,6 +1,7 @@
 import { ExternalLink, Shirt, Navigation, Cpu, Database } from 'lucide-react';
 import { portfolioData } from '../../data/portfolioData';
 import { playClickSound } from '../../utils/sound';
+import SectionTitle from '../SectionTitle';
 
 const projectVisuals = {
   rewardrobe: {
@@ -58,9 +59,7 @@ export default function WorkWindow({ soundEnabled }) {
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
         <section>
-          <h3 className="font-mono text-base sm:text-lg font-bold tracking-wide uppercase text-zinc-900 dark:text-zinc-100 mb-2.5">
-            Tools
-          </h3>
+          <SectionTitle className="mb-2.5">Tools</SectionTitle>
           <div className="flex flex-wrap gap-1.5">
             {portfolioData.tools.map((tool) => (
               <span
@@ -74,9 +73,7 @@ export default function WorkWindow({ soundEnabled }) {
         </section>
 
         <section>
-          <h3 className="font-mono text-base sm:text-lg font-bold tracking-wide uppercase text-zinc-900 dark:text-zinc-100 mb-2.5">
-            Development
-          </h3>
+          <SectionTitle className="mb-2.5">Development</SectionTitle>
           <div className="flex flex-wrap gap-1.5">
             {portfolioData.development.map((item) => (
               <span
@@ -92,9 +89,7 @@ export default function WorkWindow({ soundEnabled }) {
 
       <section className="space-y-4">
         <div>
-          <h3 className="font-mono text-base sm:text-lg font-bold tracking-wide uppercase text-zinc-900 dark:text-zinc-100">
-            Selected Projects
-          </h3>
+          <SectionTitle>Selected Projects</SectionTitle>
         </div>
 
         <div className="space-y-5">
@@ -180,9 +175,7 @@ export default function WorkWindow({ soundEnabled }) {
       </section>
 
       <section className="pt-4 border-t border-zinc-200/80 dark:border-zinc-700/70 space-y-2.5">
-        <h3 className="font-mono text-base sm:text-lg font-bold tracking-wide uppercase text-zinc-900 dark:text-zinc-100">
-          Other dev projects
-        </h3>
+        <SectionTitle>Other dev projects</SectionTitle>
         <ul className="list-disc list-inside space-y-1 text-xs sm:text-[13px] text-zinc-600 dark:text-zinc-300">
           <li>This desktop-OS portfolio website!</li>
           <li>Homelab automation &amp; self-hosted monitoring stack on Proxmox VE</li>

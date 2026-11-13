@@ -1,4 +1,5 @@
 import { portfolioData } from '../../data/portfolioData';
+import SectionTitle from '../SectionTitle';
 
 export default function AboutWindow({ onOpenContact }) {
   const { profile } = portfolioData;
@@ -31,9 +32,7 @@ export default function AboutWindow({ onOpenContact }) {
         <p>{profile.bioIntro}</p>
 
         <section className="space-y-2.5">
-          <h3 className="font-mono text-sm font-bold tracking-wider uppercase text-zinc-800 dark:text-zinc-100">
-            Education
-          </h3>
+          <SectionTitle>Education</SectionTitle>
           <div className="border-l-2 border-zinc-200 dark:border-zinc-700 pl-3.5 space-y-2">
             {profile.education.map((edu) => (
               <div key={edu.degree}>
@@ -49,9 +48,7 @@ export default function AboutWindow({ onOpenContact }) {
         </section>
 
         <section className="space-y-2.5">
-          <h3 className="font-mono text-sm font-bold tracking-wider uppercase text-zinc-800 dark:text-zinc-100">
-            Experiences
-          </h3>
+          <SectionTitle>Experiences</SectionTitle>
           <div className="border-l-2 border-zinc-200 dark:border-zinc-700 pl-3.5 space-y-3">
             {profile.experiences.map((exp) => (
               <div key={`${exp.role}-${exp.organization}`}>
@@ -70,9 +67,7 @@ export default function AboutWindow({ onOpenContact }) {
         </section>
 
         <section className="space-y-2">
-          <h3 className="font-mono text-sm font-bold tracking-wider uppercase text-zinc-800 dark:text-zinc-100">
-            Other Interests
-          </h3>
+          <SectionTitle>Other Interests</SectionTitle>
           <ul className="list-disc list-inside space-y-1 text-[13px] sm:text-sm">
             {profile.otherInterests.map((interest) => (
               <li key={interest}>{interest}</li>
@@ -81,9 +76,7 @@ export default function AboutWindow({ onOpenContact }) {
         </section>
 
         <section className="space-y-2">
-          <h3 className="font-mono text-sm font-bold tracking-wider uppercase text-zinc-800 dark:text-zinc-100">
-            Language Proficiency
-          </h3>
+          <SectionTitle>Language Proficiency</SectionTitle>
           <div className="border-l-2 border-zinc-200 dark:border-zinc-700 pl-3.5 space-y-1.5">
             <p className="text-sm text-zinc-700 dark:text-zinc-200">
               i have native fluency in{' '}

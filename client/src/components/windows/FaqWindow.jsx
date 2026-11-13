@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { ChevronDown } from 'lucide-react';
 import { portfolioData } from '../../data/portfolioData';
 import { playClickSound } from '../../utils/sound';
+import SectionTitle from '../SectionTitle';
 
 export default function FaqWindow({ soundEnabled }) {
   const [openId, setOpenId] = useState(null);
@@ -14,9 +15,7 @@ export default function FaqWindow({ soundEnabled }) {
   return (
     <div className="p-5 sm:p-6 space-y-4">
       <div>
-        <h2 className="text-base font-bold text-zinc-800 dark:text-zinc-100">
-          frequently asked questions
-        </h2>
+        <SectionTitle as="h2">frequently asked questions</SectionTitle>
         <p className="text-xs text-zinc-500 dark:text-zinc-400 mt-0.5">
           tech stack choices, availability, and my homelab setup
         </p>

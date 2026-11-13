@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Check, Copy, Loader2, Send } from 'lucide-react';
 import { portfolioData } from '../../data/portfolioData';
 import { playClickSound } from '../../utils/sound';
+import SectionTitle from '../SectionTitle';
 
 export default function ContactWindow({ soundEnabled }) {
   const [form, setForm] = useState({ name: '', email: '', message: '' });
@@ -69,7 +70,7 @@ export default function ContactWindow({ soundEnabled }) {
     <div className="p-5 sm:p-6 space-y-4">
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2.5">
         <div>
-          <h2 className="text-base font-bold text-zinc-800 dark:text-zinc-100">get in touch</h2>
+          <SectionTitle as="h2">get in touch</SectionTitle>
           <p className="text-xs text-zinc-500 dark:text-zinc-400 mt-0.5">
             send a direct message or copy my email below
           </p>
