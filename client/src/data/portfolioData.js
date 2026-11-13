@@ -1,9 +1,9 @@
 const URLS = {
-  github: 'https://github.com/miraclegerrald',
-  instagram: 'https://www.instagram.com/@miraclegerrald',
-  linkedin: 'https://www.linkedin.com/in/miracle-steven-gerrald',
-  youtube: 'https://www.youtube.com/@miraclegerrald',
-  discord: 'https://www.discord.com/miraclegerrald',
+  github: 'https://github.com/im-Miracleous',
+  instagram: 'https://www.instagram.com/im_miracleous',
+  linkedin: 'https://www.linkedin.com/in/miracle-steven',
+  youtube: 'https://www.youtube.com/@im_miracleous',
+  discord: 'https://www.discord.com/users/751762039424155688',
   cv: '/CV_Miracle_Steven_Gerrald.pdf',
 };
 
@@ -19,11 +19,11 @@ export const portfolioData = {
     tagline: 'informatics engineering student, full-stack developer, and homelab enjoyer',
     subtitle: 'AI & Cybersecurity Enthusiast',
     role: '3rd Year Student @ MCU',
-    email: 'miracle.gerrald@gmail.com',
+    email: 'miraclesteven05@gmail.com',
     avatarUrl: '/avatar.jpg',
     copyright: '© 2026 Miracle Steven Gerrald',
-    bioIntro: "hi! i'm miracle — i build reliable web systems, tinker with self-hosted infrastructure, and lead student tech & music communities.",
-    bioClosing: 'open to software engineering internships, full-stack collaborations, and interesting infrastructure challenges.',
+    bioIntro: "hi! i'm miracle — i build reliable web systems, tinker with self-hosted infrastructure, and lead student tech communities.",
+    bioClosing: 'open to software engineering internships, tech collaborations, and interesting infrastructure challenges.',
     education: [
       {
         degree: 'Bachelor of Informatics Engineering (S1)',
@@ -142,60 +142,34 @@ export const portfolioData = {
 
   projects: [
     {
-      id: 'rewardrobe',
-      title: 'ReWardrobe',
-      category: 'Web',
-      year: '2025',
+      id: 'loan-approval',
+      title: 'Loan Approval System',
+      period: 'May – Jun 2026',
+      imageUrl: '/projects/loan-approval.png',
       summary:
-        'Community clothing donation and distribution web platform connecting donors, verifiers, and recipients with transparent inventory and request tracking.',
-      tags: ['Laravel', 'MySQL', 'Tailwind CSS'],
-      highlights: [
-        'Role-based dashboards for donors, community coordinators, and recipients',
-        'Structured donation intake, condition grading, and distribution workflows',
-      ],
-      repoUrl: URLS.github,
-    },
-    {
-      id: 'flood-nav',
-      title: 'FLOOD-NAV',
-      category: 'Systems',
-      year: '2025',
-      summary:
-        'Flood-aware routing and disaster navigation application designed to help commuters and responders avoid inundated road segments in real time.',
-      tags: ['React', 'Node.js', 'Geospatial'],
-      highlights: [
-        'Dynamic hazard-avoidance route recalculation around reported flood zones',
-        'Low-friction incident reporting interface optimized for mobile responders',
-      ],
-      repoUrl: URLS.github,
-    },
-    {
-      id: 'ascend',
-      title: 'ASCEND',
-      category: 'IoT & Architecture',
-      year: '2025',
-      summary:
-        'Smart Curb for Flood Detection IoT & software architecture proposal combining roadside water-level telemetry with real-time alert pipelines.',
-      tags: ['IoT', 'Architecture', 'Telemetry'],
-      highlights: [
-        'End-to-end sensor-to-cloud ingestion design for urban drainage monitoring',
-        'Threshold-based early warning flow integrated with municipal mapping',
-      ],
-      repoUrl: URLS.github,
+        'CrediSenseAI loan approval platform combining a Laravel portal with a Python multi-agent scoring and LLM insight engine, plus ML/TabNet credit default prediction.',
+      tags: ['Laravel', 'Python', 'TabNet', 'Docker', 'Streamlit'],
+      repoUrl: 'https://github.com/Febrian123-create/Tubes-Kecerdasan-Mesin',
     },
     {
       id: 'lab-inventory',
-      title: 'Laboratory Inventory & Management System',
-      category: 'Web',
-      year: '2024',
+      title: 'Lab Inventory App',
+      period: 'May – Jun 2026',
+      imageUrl: '/projects/lab-inventory.png',
       summary:
-        'Administrative and asset tracking system built for university operations to streamline equipment borrowing, maintenance logs, and lab scheduling.',
-      tags: ['Laravel', 'MySQL', 'Admin UI'],
-      highlights: [
-        'Check-in / check-out ledger with overdue tracking and audit history',
-        'Centralized catalog for lab hardware, peripherals, and room assignments',
-      ],
-      repoUrl: URLS.github,
+        'Labventory multi-lab inventory system using a Node.js REST API and Laravel frontend for role-based procurement, asset & consumables tracking, maintenance logs, and label printing.',
+      tags: ['Node.js', 'Laravel', 'REST API', 'MySQL'],
+      repoUrl: 'https://github.com/FeliciaivannaW/capstone2_lab_inventory',
+    },
+    {
+      id: 'library-management',
+      title: 'Library Management',
+      period: 'Dec 2025 – Jan 2026',
+      imageUrl: '/projects/library-management.png',
+      summary:
+        'Collaborative library management web application for cataloging collections, managing member borrowing/returns, and tracking book inventory.',
+      tags: ['Web App', 'Database', 'Collaboration'],
+      repoUrl: 'https://github.com/im-Miracleous/library_app',
     },
   ],
 
