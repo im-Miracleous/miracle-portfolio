@@ -184,7 +184,7 @@ export default function WorkWindow({ soundEnabled }) {
         <p className="pt-1 text-xs sm:text-[13px] text-zinc-500 dark:text-zinc-400">
           See more on{' '}
           <a
-            href="https://github.com/miraclegerrald"
+            href={portfolioData.urls.github}
             target="_blank"
             rel="noopener noreferrer"
             onClick={() => playClickSound(soundEnabled)}

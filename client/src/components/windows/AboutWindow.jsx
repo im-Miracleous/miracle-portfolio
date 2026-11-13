@@ -45,8 +45,8 @@ export default function AboutWindow({ onOpenContact }) {
             {profile.role}
           </p>
           <a
-            href={profile.cvUrl}
-            download="CV_Miracle_Steven_Gerrald.pdf"
+            href={portfolioData.urls.cv}
+            download={portfolioData.urls.cv.split('/').pop()}
             className="mt-3 inline-flex items-center gap-1.5 rounded-md border border-amber-300/80 bg-amber-50/90 hover:bg-amber-100 text-amber-900 dark:border-sky-400/50 dark:bg-sky-950/70 dark:hover:bg-sky-900/70 dark:text-sky-200 px-3 py-1 font-mono text-xs font-medium transition-colors"
           >
             <Download className="h-3.5 w-3.5" />

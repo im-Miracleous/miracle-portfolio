@@ -1,23 +1,34 @@
+const URLS = {
+  github: 'https://github.com/miraclegerrald',
+  instagram: 'https://www.instagram.com/@miraclegerrald',
+  linkedin: 'https://www.linkedin.com/in/miracle-steven-gerrald',
+  youtube: 'https://www.youtube.com/@miraclegerrald',
+  discord: 'https://www.discord.com/miraclegerrald',
+  cv: '/CV_Miracle_Steven_Gerrald.pdf',
+};
+
 export const portfolioData = {
+  urls: URLS,
+
   profile: {
     firstName: 'miracle',
     fullName: 'Miracle Steven Gerrald',
     initials: 'MG',
     greetingPrefix: 'hi!',
     greetingHighlight: "i'm miracle",
-    tagline: 'informatics engineering student, full-stack developer, and homelab enthusiast',
+    tagline: 'informatics engineering student, full-stack developer, and homelab enjoyer',
     subtitle: 'AI & Cybersecurity Enthusiast',
     role: '3rd Year Student @ MCU',
     email: 'miracle.gerrald@gmail.com',
-    cvUrl: '/CV_Miracle_Steven_Gerrald.pdf',
+    avatarUrl: '/avatar.jpg',
     copyright: '© 2026 Miracle Steven Gerrald',
     bioIntro: "hi! i'm miracle — i build reliable web systems, tinker with self-hosted infrastructure, and lead student tech & music communities.",
     bioClosing: 'open to software engineering internships, full-stack collaborations, and interesting infrastructure challenges.',
     education: [
       {
         degree: 'Bachelor of Informatics Engineering (S1)',
-        institution: 'Universitas Kristen Maranatha — Bandung',
-        period: '2023 – Present',
+        institution: 'Maranatha Christian University — Bandung',
+        period: '2024 – Present',
       },
     ],
     experiences: [
@@ -80,27 +91,27 @@ export const portfolioData = {
     {
       id: 'cv',
       label: 'CV / Resume',
-      href: '/CV_Miracle_Steven_Gerrald.pdf',
+      href: URLS.cv,
     },
     {
       id: 'github',
       label: 'GitHub',
-      href: 'https://github.com/miraclegerrald',
+      href: URLS.github,
     },
     {
       id: 'instagram',
       label: 'Instagram',
-      href: 'https://www.instagram.com/@miraclegerrald',
+      href: URLS.instagram,
     },
     {
       id: 'linkedin',
       label: 'LinkedIn',
-      href: 'https://www.linkedin.com/in/miracle-steven-gerrald',
+      href: URLS.linkedin,
     },
     {
       id: 'discord',
       label: 'Discord',
-      href: 'https://www.discord.com/miraclegerrald',
+      href: URLS.discord,
     },
   ],
 
@@ -142,7 +153,7 @@ export const portfolioData = {
         'Role-based dashboards for donors, community coordinators, and recipients',
         'Structured donation intake, condition grading, and distribution workflows',
       ],
-      repoUrl: 'https://github.com/miraclegerrald',
+      repoUrl: URLS.github,
     },
     {
       id: 'flood-nav',
@@ -156,7 +167,7 @@ export const portfolioData = {
         'Dynamic hazard-avoidance route recalculation around reported flood zones',
         'Low-friction incident reporting interface optimized for mobile responders',
       ],
-      repoUrl: 'https://github.com/miraclegerrald',
+      repoUrl: URLS.github,
     },
     {
       id: 'ascend',
@@ -170,7 +181,7 @@ export const portfolioData = {
         'End-to-end sensor-to-cloud ingestion design for urban drainage monitoring',
         'Threshold-based early warning flow integrated with municipal mapping',
       ],
-      repoUrl: 'https://github.com/miraclegerrald',
+      repoUrl: URLS.github,
     },
     {
       id: 'lab-inventory',
@@ -184,7 +195,7 @@ export const portfolioData = {
         'Check-in / check-out ledger with overdue tracking and audit history',
         'Centralized catalog for lab hardware, peripherals, and room assignments',
       ],
-      repoUrl: 'https://github.com/miraclegerrald',
+      repoUrl: URLS.github,
     },
   ],
 
@@ -192,32 +203,32 @@ export const portfolioData = {
     {
       id: 'github',
       label: 'github',
-      href: 'https://github.com/miraclegerrald',
+      href: URLS.github,
     },
     {
       id: 'linkedin',
       label: 'linkedin',
-      href: 'https://www.linkedin.com/in/miracle-steven-gerrald',
+      href: URLS.linkedin,
     },
     {
       id: 'youtube',
       label: 'youtube',
-      href: 'https://www.youtube.com/@miraclegerrald',
+      href: URLS.youtube,
     },
     {
       id: 'instagram',
       label: 'instagram',
-      href: 'https://www.instagram.com/miraclegerrald',
+      href: URLS.instagram,
     },
     {
       id: 'discord',
       label: 'discord',
-      href: 'https://discord.com',
+      href: URLS.discord,
     },
     {
       id: 'cv',
       label: 'resume / cv',
-      href: '/CV_Miracle_Steven_Gerrald.pdf',
+      href: URLS.cv,
     },
   ],
 
