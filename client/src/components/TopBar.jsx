@@ -2,7 +2,7 @@ import { Moon, Sun, Volume2, VolumeX } from 'lucide-react';
 
 export default function TopBar({ darkMode, onToggleTheme, soundEnabled, onToggleSound }) {
   return (
-    <header className="fixed top-4 left-4 sm:top-5 sm:left-6 z-50 flex items-center gap-2">
+    <header className="fixed top-4 left-4 sm:top-5 sm:left-6 z-20 flex items-center gap-2">
       <button
         type="button"
         onClick={onToggleTheme}
