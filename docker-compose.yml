@@ -1,0 +1,28 @@
+services:
+  portfolio:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: miracle-portfolio
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:${APP_PORT:-5000}:5000"
+    environment:
+      NODE_ENV: production
+      PORT: 5000
+    env_file:
+      - path: .env
+        required: false
+
+  cloudflared:
+    image: cloudflare/cloudflared:latest
+    container_name: miracle-portfolio-tunnel
+    restart: unless-stopped
+    profiles:
+      - tunnel
+    command: tunnel --no-autoupdate run
+    environment:
+      TUNNEL_TOKEN: ${CLOUDFLARE_TUNNEL_TOKEN}
+    depends_on:
+      portfolio:
+        condition: service_healthy
