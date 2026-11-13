@@ -1,0 +1,118 @@
+import { portfolioData } from '../../data/portfolioData';
+
+export default function AboutWindow({ onOpenContact }) {
+  const { profile } = portfolioData;
+
+  return (
+    <div className="relative">
+      <div className="sticky top-0 z-10 bg-white dark:bg-[#131d2b] border-b border-zinc-200 dark:border-zinc-700/70 p-6 sm:p-7 flex flex-col sm:flex-row items-center gap-5">
+        <div className="shrink-0">
+          <div className="flex h-24 w-24 sm:h-28 sm:w-28 items-center justify-center rounded-full border-2 border-amber-400/70 dark:border-sky-400/70 bg-gradient-to-br from-amber-100 via-orange-50 to-sky-100 dark:from-sky-900/80 dark:via-slate-800 dark:to-indigo-950 shadow-inner">
+            <span className="font-mono text-2xl sm:text-3xl font-bold tracking-tight text-amber-700 dark:text-sky-200">
+              {profile.initials}
+            </span>
+          </div>
+        </div>
+
+        <div className="text-center sm:text-left">
+          <h2 className="text-2xl sm:text-[1.7rem] font-bold tracking-tight text-[#f59e0b] dark:text-[#7dd3fc]">
+            {profile.fullName}
+          </h2>
+          <p className="mt-1 text-sm font-medium text-zinc-700 dark:text-zinc-200">
+            {profile.subtitle}
+          </p>
+          <p className="mt-0.5 text-xs sm:text-sm text-zinc-500 dark:text-zinc-400">
+            {profile.role}
+          </p>
+        </div>
+      </div>
+
+      <div className="p-6 sm:p-7 space-y-7 text-sm text-zinc-600 dark:text-zinc-300 leading-relaxed">
+        <p>{profile.bioIntro}</p>
+
+        <section className="space-y-2.5">
+          <h3 className="font-mono text-sm font-bold tracking-wider uppercase text-zinc-800 dark:text-zinc-100">
+            Education
+          </h3>
+          <div className="border-l-2 border-zinc-200 dark:border-zinc-700 pl-3.5 space-y-2">
+            {profile.education.map((edu) => (
+              <div key={edu.degree}>
+                <p className="font-medium text-zinc-800 dark:text-zinc-100 text-sm">
+                  {edu.degree}
+                </p>
+                <p className="text-xs text-zinc-500 dark:text-zinc-400">
+                  {edu.institution} ({edu.period})
+                </p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section className="space-y-2.5">
+          <h3 className="font-mono text-sm font-bold tracking-wider uppercase text-zinc-800 dark:text-zinc-100">
+            Experiences
+          </h3>
+          <div className="border-l-2 border-zinc-200 dark:border-zinc-700 pl-3.5 space-y-3">
+            {profile.experiences.map((exp) => (
+              <div key={`${exp.role}-${exp.organization}`}>
+                <p className="font-medium text-zinc-800 dark:text-zinc-100 text-sm">
+                  {exp.role}{' '}
+                  <span className="text-xs font-normal text-zinc-500 dark:text-zinc-400">
+                    — {exp.organization} ({exp.period})
+                  </span>
+                </p>
+                <p className="mt-0.5 text-xs sm:text-[13px] text-zinc-600 dark:text-zinc-300">
+                  {exp.detail}
+                </p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section className="space-y-2">
+          <h3 className="font-mono text-sm font-bold tracking-wider uppercase text-zinc-800 dark:text-zinc-100">
+            Other Interests
+          </h3>
+          <ul className="list-disc list-inside space-y-1 text-[13px] sm:text-sm">
+            {profile.otherInterests.map((interest) => (
+              <li key={interest}>{interest}</li>
+            ))}
+          </ul>
+        </section>
+
+        <section className="space-y-2">
+          <h3 className="font-mono text-sm font-bold tracking-wider uppercase text-zinc-800 dark:text-zinc-100">
+            Language Proficiency
+          </h3>
+          <div className="border-l-2 border-zinc-200 dark:border-zinc-700 pl-3.5 space-y-1.5">
+            <p className="text-sm text-zinc-700 dark:text-zinc-200">
+              i have native fluency in{' '}
+              <span className="font-semibold text-[#f59e0b] dark:text-[#7dd3fc]">
+                Indonesian
+              </span>{' '}
+              and strong professional proficiency in{' '}
+              <span className="font-semibold text-[#f59e0b] dark:text-[#7dd3fc]">
+                English
+              </span>
+              .
+            </p>
+            <p className="text-xs text-zinc-500 dark:text-zinc-400">
+              {profile.languages.note}
+            </p>
+          </div>
+        </section>
+
+        <p className="pt-2 border-t border-zinc-200/80 dark:border-zinc-700/70 text-xs sm:text-sm text-zinc-500 dark:text-zinc-400">
+          {profile.bioClosing}{' '}
+          <button
+            type="button"
+            onClick={onOpenContact}
+            className="font-medium text-[#d97706] dark:text-[#7dd3fc] underline underline-offset-4 hover:opacity-80 cursor-pointer"
+          >
+            say hello!
+          </button>
+        </p>
+      </div>
+    </div>
+  );
+}
