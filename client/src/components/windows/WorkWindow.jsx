@@ -4,18 +4,33 @@ import { portfolioData } from '../../data/portfolioData';
 import { playClickSound } from '../../utils/sound';
 import SectionTitle from '../SectionTitle';
 
-function ProjectThumbnail({ project }) {
+function ProjectThumbnail({ project, soundEnabled, onPreview }) {
   const [imgError, setImgError] = useState(false);
 
   let thumbnailContent;
   if (project.imageUrl && !imgError) {
+    const filename = project.imageUrl.split('?')[0].split('/').pop();
     thumbnailContent = (
-      <img
-        src={project.imageUrl}
-        alt={project.title}
-        onError={() => setImgError(true)}
-        className="h-full w-full object-cover"
-      />
+      <button
+        type="button"
+        onClick={() => {
+          playClickSound(soundEnabled);
+          onPreview?.({
+            src: project.imageUrl,
+            alt: project.title,
+            filename,
+          });
+        }}
+        aria-label={`Preview ${project.title}`}
+        className="group relative h-full w-full cursor-zoom-in focus:outline-none"
+      >
+        <img
+          src={project.imageUrl}
+          alt={project.title}
+          onError={() => setImgError(true)}
+          className="h-full w-full object-cover transition-transform duration-200 group-hover:scale-105"
+        />
+      </button>
     );
   } else {
     thumbnailContent = (
@@ -37,7 +52,7 @@ function ProjectThumbnail({ project }) {
   );
 }
 
-export default function WorkWindow({ soundEnabled }) {
+export default function WorkWindow({ soundEnabled, onPreviewImage }) {
   return (
     <div className="p-6 sm:p-7 space-y-7 text-sm text-zinc-700 dark:text-zinc-200">
       <div className="rounded-lg bg-amber-50/90 dark:bg-sky-950/40 border border-amber-200/70 dark:border-sky-800/50 px-4 py-3 text-xs sm:text-[13px] leading-relaxed">
@@ -97,7 +112,11 @@ export default function WorkWindow({ soundEnabled }) {
               key={project.id}
               className="flex flex-col sm:flex-row items-start gap-4 p-2 sm:p-3 rounded-xl transition-colors hover:bg-zinc-50/80 dark:hover:bg-zinc-900/40"
             >
-              <ProjectThumbnail project={project} />
+              <ProjectThumbnail
+                project={project}
+                soundEnabled={soundEnabled}
+                onPreview={onPreviewImage}
+              />
 
               {/* Content on right */}
               <div className="flex-1 min-w-0 flex flex-col justify-between self-stretch">

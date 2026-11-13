@@ -38,6 +38,11 @@ const WINDOW_CONFIG = {
     widthClass: 'md:w-[520px]',
     defaultOffset: { x: 64, y: 40 },
   },
+  preview: {
+    title: 'preview',
+    widthClass: 'md:w-fit md:min-w-[320px] md:max-w-[88vw]',
+    defaultOffset: { x: 0, y: 0 },
+  },
 };
 
 export default function App() {
@@ -53,6 +58,7 @@ export default function App() {
   });
 
   const [openWindows, setOpenWindows] = useState([]);
+  const [previewImage, setPreviewImage] = useState(null);
   const topZRef = useRef(30);
 
   useEffect(() => {
@@ -155,18 +161,37 @@ export default function App() {
     setSoundEnabled(next);
   };
 
+  const openPreview = useCallback(
+    (image) => {
+      setPreviewImage(image);
+      openWindow('preview');
+    },
+    [openWindow]
+  );
+
   const renderWindowContent = (id) => {
     switch (id) {
       case 'about':
         return <AboutWindow onOpenContact={() => openWindow('contact')} />;
       case 'work':
-        return <WorkWindow soundEnabled={soundEnabled} />;
+        return <WorkWindow soundEnabled={soundEnabled} onPreviewImage={openPreview} />;
       case 'links':
         return <LinksWindow soundEnabled={soundEnabled} />;
       case 'faq':
         return <FaqWindow soundEnabled={soundEnabled} />;
       case 'contact':
         return <ContactWindow soundEnabled={soundEnabled} />;
+      case 'preview':
+        if (!previewImage) return null;
+        return (
+          <div className="p-3 sm:p-4 bg-zinc-100/80 dark:bg-zinc-950/60 flex items-center justify-center">
+            <img
+              src={previewImage.src}
+              alt={previewImage.alt}
+              className="max-h-[65vh] w-auto max-w-full rounded-lg object-contain shadow-sm"
+            />
+          </div>
+        );
       default:
         return null;
     }
@@ -205,11 +230,15 @@ export default function App() {
       {/* Floating Pop-Up Windows */}
       {openWindows.map((win) => {
         const config = WINDOW_CONFIG[win.id];
+        const windowTitle =
+          win.id === 'preview' && previewImage?.filename
+            ? `preview - ${previewImage.filename}`
+            : config.title;
         return (
           <DraggableWindow
             key={win.id}
             id={win.id}
-            title={config.title}
+            title={windowTitle}
             zIndex={win.zIndex}
             position={win.position}
             closing={Boolean(win.closing)}

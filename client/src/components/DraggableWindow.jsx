@@ -92,7 +92,7 @@ export default function DraggableWindow({
           onPointerDown={handleTitleBarPointerDown}
           className="flex shrink-0 items-center justify-between bg-[#3f3f3f] dark:bg-[#1c1c20] px-5 md:px-4 py-3 md:py-2.5 border-b border-zinc-600/40 dark:border-zinc-700/60 md:cursor-grab md:active:cursor-grabbing select-none touch-none"
         >
-          <span className="font-mono text-sm font-medium text-white tracking-tight">
+          <span className="font-mono text-sm font-medium text-white tracking-tight truncate pr-2">
             {title}
           </span>
 
