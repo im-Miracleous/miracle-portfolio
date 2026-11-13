@@ -1,18 +1,36 @@
+import { useState } from 'react';
 import { Download } from 'lucide-react';
 import { portfolioData } from '../../data/portfolioData';
 import SectionTitle from '../SectionTitle';
 
 export default function AboutWindow({ onOpenContact }) {
   const { profile } = portfolioData;
+  const [imgError, setImgError] = useState(false);
+
+  let avatarContent;
+  if (profile.avatarUrl && !imgError) {
+    avatarContent = (
+      <img
+        src={profile.avatarUrl}
+        alt={profile.fullName}
+        onError={() => setImgError(true)}
+        className="h-full w-full object-cover"
+      />
+    );
+  } else {
+    avatarContent = (
+      <span className="font-mono text-2xl sm:text-3xl font-bold tracking-tight text-amber-700 dark:text-sky-200">
+        {profile.initials}
+      </span>
+    );
+  }
 
   return (
     <div className="relative">
       <div className="sticky top-0 z-10 bg-white dark:bg-[#131d2b] border-b border-zinc-200 dark:border-zinc-700/70 p-6 sm:p-7 flex flex-col sm:flex-row items-center gap-5">
         <div className="shrink-0">
-          <div className="flex h-24 w-24 sm:h-28 sm:w-28 items-center justify-center rounded-full border-2 border-amber-400/70 dark:border-sky-400/70 bg-gradient-to-br from-amber-100 via-orange-50 to-sky-100 dark:from-sky-900/80 dark:via-slate-800 dark:to-indigo-950 shadow-inner">
-            <span className="font-mono text-2xl sm:text-3xl font-bold tracking-tight text-amber-700 dark:text-sky-200">
-              {profile.initials}
-            </span>
+          <div className="flex h-24 w-24 sm:h-28 sm:w-28 items-center justify-center overflow-hidden rounded-full border-2 border-amber-400/70 dark:border-sky-400/70 bg-gradient-to-br from-amber-100 via-orange-50 to-sky-100 dark:from-sky-900/80 dark:via-slate-800 dark:to-indigo-950 shadow-inner">
+            {avatarContent}
           </div>
         </div>
 
