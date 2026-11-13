@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react';
+import { ChevronDown } from 'lucide-react';
 
 export default function DraggableWindow({
   id,
@@ -30,7 +31,6 @@ export default function DraggableWindow({
       const nextX = dragStateRef.current.startPosX + deltaX;
       const nextY = dragStateRef.current.startPosY + deltaY;
 
-      // Keep window comfortably within viewport bounds
       const maxOffsetX = Math.max(120, window.innerWidth / 2 - 140);
       const maxOffsetY = Math.max(80, window.innerHeight / 2 - 120);
 
@@ -57,7 +57,6 @@ export default function DraggableWindow({
   }, [id, onMove]);
 
   const handleTitleBarPointerDown = (e) => {
-    // Only allow dragging on non-mobile viewports and ignore clicks on close button
     if (window.innerWidth < 768) return;
     if (e.target.closest('button')) return;
 
@@ -82,16 +81,16 @@ export default function DraggableWindow({
         '--ty': `${position.y}px`,
       }}
       onMouseDown={() => onFocus(id)}
-      className={`fixed inset-x-0 top-14 mx-auto w-[92vw] max-h-[78vh] md:inset-x-auto md:top-1/2 md:left-1/2 md:[transform:translate(calc(-50%+var(--tx)),calc(-50%+var(--ty)))] ${widthClass} md:max-h-[76vh] flex`}
+      className={`fixed inset-x-0 bottom-0 h-[85vh] max-h-[85vh] md:inset-x-auto md:bottom-auto md:top-1/2 md:left-1/2 md:h-auto md:max-h-[76vh] md:[transform:translate(calc(-50%+var(--tx)),calc(-50%+var(--ty)))] ${widthClass} flex`}
     >
       <div
-        className={`origin-center flex w-full max-h-[78vh] md:max-h-[76vh] flex-col rounded-xl border border-zinc-500/75 dark:border-zinc-300/70 bg-white dark:bg-[#131d2b] shadow-[0_18px_48px_rgba(15,23,42,0.22)] dark:shadow-[0_20px_54px_rgba(0,0,0,0.6)] overflow-hidden transition-colors duration-200 ${
+        className={`origin-bottom md:origin-center flex w-full h-full md:h-auto md:max-h-[76vh] flex-col rounded-t-2xl rounded-b-none md:rounded-xl border border-b-0 md:border-b border-zinc-500/75 dark:border-zinc-300/70 bg-white dark:bg-[#131d2b] shadow-[0_-10px_36px_rgba(15,23,42,0.2)] md:shadow-[0_18px_48px_rgba(15,23,42,0.22)] dark:shadow-[0_20px_54px_rgba(0,0,0,0.6)] overflow-hidden transition-colors duration-200 ${
           closing ? 'animate-window-out' : 'animate-window-in'
         }`}
       >
         <div
           onPointerDown={handleTitleBarPointerDown}
-          className="flex shrink-0 items-center justify-between bg-[#3f3f3f] dark:bg-[#1c1c20] px-4 py-2.5 border-b border-zinc-600/40 dark:border-zinc-700/60 md:cursor-grab md:active:cursor-grabbing select-none touch-none"
+          className="flex shrink-0 items-center justify-between bg-[#3f3f3f] dark:bg-[#1c1c20] px-5 md:px-4 py-3 md:py-2.5 border-b border-zinc-600/40 dark:border-zinc-700/60 md:cursor-grab md:active:cursor-grabbing select-none touch-none"
         >
           <span className="font-mono text-sm font-medium text-white tracking-tight">
             {title}
@@ -104,9 +103,10 @@ export default function DraggableWindow({
               onClose(id);
             }}
             aria-label={`Close ${title} window`}
-            className="font-mono text-sm font-medium text-zinc-200 hover:text-amber-400 dark:hover:text-sky-300 px-1 py-0.5 rounded transition-colors cursor-pointer"
+            className="flex items-center justify-center font-mono text-sm font-medium text-zinc-200 hover:text-amber-400 dark:hover:text-sky-300 px-1 py-0.5 rounded transition-colors cursor-pointer"
           >
-            [x]
+            <ChevronDown className="h-5 w-5 md:hidden" strokeWidth={2.2} />
+            <span className="hidden md:inline">[x]</span>
           </button>
         </div>
 

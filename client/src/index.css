@@ -60,6 +60,37 @@
   }
 }
 
+@keyframes sheetSlideUp {
+  0% {
+    opacity: 0.6;
+    transform: translateY(100%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes sheetSlideDown {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0.5;
+    transform: translateY(100%);
+  }
+}
+
+@keyframes backdropFadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
 .animate-window-in {
   animation: windowPopIn 240ms cubic-bezier(0.34, 1.45, 0.64, 1) forwards;
 }
@@ -67,6 +98,21 @@
 .animate-window-out {
   animation: windowPopOut 180ms cubic-bezier(0.4, 0, 0.8, 0.4) forwards;
   pointer-events: none;
+}
+
+.animate-backdrop-in {
+  animation: backdropFadeIn 200ms ease-out forwards;
+}
+
+@media (max-width: 767px) {
+  .animate-window-in {
+    animation: sheetSlideUp 280ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  .animate-window-out {
+    animation: sheetSlideDown 220ms cubic-bezier(0.4, 0, 1, 1) forwards;
+    pointer-events: none;
+  }
 }
 
 @keyframes floatSlow {

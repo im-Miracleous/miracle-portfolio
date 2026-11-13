@@ -118,7 +118,7 @@ export default function App() {
         setOpenWindows((prev) =>
           prev.filter((w) => !(w.id === id && w.closing))
         );
-      }, 185);
+      }, 225);
     },
     [soundEnabled]
   );
@@ -173,7 +173,7 @@ export default function App() {
   };
 
   return (
-    <div className="relative h-screen w-screen overflow-hidden flex items-center justify-center">
+    <div className="relative h-[100dvh] w-screen overflow-hidden flex items-start pt-20 md:items-center md:pt-0 justify-center">
       <DesktopBackground darkMode={darkMode} />
 
       <TopBar
@@ -183,15 +183,22 @@ export default function App() {
         onToggleSound={handleToggleSound}
       />
 
-      <main className="relative z-10 flex items-center justify-center px-4 pb-8">
+      <main className="relative z-10 flex items-center justify-center px-4 md:pb-8">
         <HomeWindow openWindows={openWindows} onOpenWindow={openWindow} />
       </main>
 
-      {/* Mobile backdrop when one or more windows are stacked */}
-      {openWindows.length > 0 && (
+      {openWindows.some((w) => !w.closing) && (
         <div
           aria-hidden="true"
-          className="fixed inset-0 z-20 bg-zinc-950/30 backdrop-blur-[1px] md:hidden"
+          onClick={() => {
+            const active = openWindows.filter((w) => !w.closing);
+            if (active.length === 0) return;
+            const topWin = active.reduce((highest, curr) =>
+              curr.zIndex > highest.zIndex ? curr : highest
+            );
+            closeWindow(topWin.id);
+          }}
+          className="animate-backdrop-in fixed inset-0 z-20 bg-zinc-950/35 backdrop-blur-[1px] md:hidden"
         />
       )}
 
