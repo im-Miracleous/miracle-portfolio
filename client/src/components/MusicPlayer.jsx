@@ -46,13 +46,13 @@ export default function MusicPlayer({ soundEnabled }) {
   };
 
   return (
-    <div className="fixed bottom-4 right-4 sm:bottom-5 sm:right-6 z-30 select-none">
+    <div className="fixed bottom-3 right-3 sm:bottom-5 sm:right-6 z-20 select-none">
       <button
         type="button"
         onClick={toggleMusic}
         title={isPlaying ? 'Pause background music' : 'Play background music'}
         aria-label={isPlaying ? 'Pause background music' : 'Play background music'}
-        className={`group relative flex items-center gap-2 rounded-full border px-3 py-1.5 shadow-sm backdrop-blur-xs transition-all duration-200 hover:-translate-y-0.5 cursor-pointer ${
+        className={`group relative flex items-center gap-2 rounded-full border px-2.5 py-1.5 sm:px-3 shadow-sm backdrop-blur-xs transition-all duration-200 hover:-translate-y-0.5 cursor-pointer ${
           isPlaying
             ? 'border-emerald-400/80 bg-white/95 text-emerald-700 dark:border-emerald-400/70 dark:bg-zinc-900/90 dark:text-emerald-300 shadow-emerald-500/10'
             : 'border-zinc-300/80 bg-white/85 text-zinc-600 hover:border-amber-400 dark:border-zinc-700/80 dark:bg-zinc-900/80 dark:text-zinc-300 dark:hover:border-sky-400'
@@ -110,7 +110,7 @@ export default function MusicPlayer({ soundEnabled }) {
           )}
         </div>
 
-        <span className="font-mono text-[11px] font-medium tracking-tight">
+        <span className="hidden sm:inline font-mono text-[11px] font-medium tracking-tight">
           {isPlaying ? 'bgm: on ♫' : 'bgm: off'}
         </span>
       </button>

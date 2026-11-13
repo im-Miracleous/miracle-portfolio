@@ -12,7 +12,7 @@ const iconMap = {
 export default function Footer({ soundEnabled }) {
   return (
     <footer className="fixed bottom-3 inset-x-0 z-20 flex flex-col items-center gap-2 pointer-events-none">
-      <div className="flex items-center gap-3 pointer-events-auto">
+      <div className="hidden md:flex items-center gap-3 pointer-events-auto">
         {portfolioData.socials.map((item) => {
           const Icon = iconMap[item.id] || Github;
           return (
