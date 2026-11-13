@@ -1,0 +1,17 @@
+MIRACLE STEVEN GERRALD
+Bandung-based Informatics Engineering Student | Universitas Kristen Maranatha
+President of Argos Club UKM & Software Developer
+Email: miracle.gerrald@gmail.com
+GitHub: https://github.com/miraclegerrald
+LinkedIn: https://www.linkedin.com/in/miracle-steven-gerrald
+
+FOCUS AREAS
+- Full-Stack Web Development: Laravel, React, Node.js/Express, MySQL, Tailwind CSS
+- Infrastructure & Homelab: Linux, Docker, Proxmox VE, Reverse Proxies, Self-Hosting
+- Leadership & Music: President of Argos Club UKM, University Choral Ensemble Director
+
+SELECTED PROJECTS
+1. ReWardrobe (2025) - Community clothing donation & distribution platform (Laravel, MySQL, Tailwind CSS)
+2. FLOOD-NAV (2025) - Flood-aware routing & disaster navigation application (React, Node.js, Geospatial)
+3. ASCEND (2025) - Smart Curb for Flood Detection IoT & software architecture proposal
+4. Laboratory Inventory & Management System (2024) - University lab equipment & asset tracking system

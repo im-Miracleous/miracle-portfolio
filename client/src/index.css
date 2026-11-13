@@ -1,0 +1,101 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@layer base {
+  :root {
+    font-family: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  }
+
+  .font-mono {
+    font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  }
+
+  body {
+    margin: 0;
+    overflow: hidden;
+    user-select: none;
+    -webkit-font-smoothing: antialiased;
+  }
+}
+
+/* Custom subtle desktop scrollbar inside windows */
+.os-scroll::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.os-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.os-scroll::-webkit-scrollbar-thumb {
+  background: rgba(113, 113, 122, 0.35);
+  border-radius: 9999px;
+}
+
+.os-scroll::-webkit-scrollbar-thumb:hover {
+  background: rgba(113, 113, 122, 0.55);
+}
+
+@keyframes windowPopIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.65);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes windowPopOut {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.65);
+  }
+}
+
+.animate-window-in {
+  animation: windowPopIn 240ms cubic-bezier(0.34, 1.45, 0.64, 1) forwards;
+}
+
+.animate-window-out {
+  animation: windowPopOut 180ms cubic-bezier(0.4, 0, 0.8, 0.4) forwards;
+  pointer-events: none;
+}
+
+@keyframes floatSlow {
+  0%,
+  100% {
+    transform: translateY(0px) rotate(-4deg);
+  }
+  50% {
+    transform: translateY(-5px) rotate(3deg);
+  }
+}
+
+.animate-float-slow {
+  animation: floatSlow 4.5s ease-in-out infinite;
+}
+
+@keyframes waveSlide {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.animate-wave-slow {
+  animation: waveSlide 16s linear infinite;
+}
+
+.animate-wave-medium {
+  animation: waveSlide 11s linear infinite;
+}
