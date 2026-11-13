@@ -1,4 +1,4 @@
-import { Github, Instagram, Linkedin, Youtube } from 'lucide-react';
+import { FileText, Github, Instagram, Linkedin, Youtube } from 'lucide-react';
 import { portfolioData } from '../../data/portfolioData';
 import { playClickSound } from '../../utils/sound';
 
@@ -16,12 +16,13 @@ const iconMap = {
   youtube: Youtube,
   instagram: Instagram,
   discord: DiscordIcon,
+  cv: FileText,
 };
 
 export default function LinksWindow({ soundEnabled }) {
   return (
     <div className="p-6 sm:p-8 flex flex-col items-center justify-center gap-6">
-      <div className="grid grid-cols-3 sm:grid-cols-5 gap-6 sm:gap-7 w-full max-w-[460px] place-items-center">
+      <div className="grid grid-cols-3 gap-6 sm:gap-8 w-full max-w-[380px] place-items-center">
         {portfolioData.links.map((link) => {
           const Icon = iconMap[link.id] || Github;
           return (
@@ -36,7 +37,7 @@ export default function LinksWindow({ soundEnabled }) {
               <div className="flex h-12 w-12 items-center justify-center rounded-xl text-zinc-700 dark:text-zinc-200 transition-transform duration-150 group-hover:-translate-y-1 group-hover:text-[#f59e0b] dark:group-hover:text-[#7dd3fc]">
                 <Icon className="h-9 w-9" strokeWidth={1.75} />
               </div>
-              <span className="font-mono text-xs font-medium text-zinc-600 group-hover:text-zinc-900 dark:text-zinc-300 dark:group-hover:text-white transition-colors">
+              <span className="font-mono text-xs font-medium text-zinc-600 group-hover:text-zinc-900 dark:text-zinc-300 dark:group-hover:text-white transition-colors text-center">
                 {link.label}
               </span>
             </a>

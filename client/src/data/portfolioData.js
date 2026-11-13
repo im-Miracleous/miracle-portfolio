@@ -9,6 +9,7 @@ export const portfolioData = {
     subtitle: 'AI & Cybersecurity Enthusiast',
     role: '3rd Year Student @ MCU',
     email: 'miracle.gerrald@gmail.com',
+    cvUrl: '/CV_Miracle_Steven_Gerrald.pdf',
     copyright: '© 2026 Miracle Steven Gerrald',
     bioIntro: "hi! i'm miracle — i build reliable web systems, tinker with self-hosted infrastructure, and lead student tech & music communities.",
     bioClosing: 'open to software engineering internships, full-stack collaborations, and interesting infrastructure challenges.',
@@ -77,9 +78,19 @@ export const portfolioData = {
 
   socials: [
     {
+      id: 'cv',
+      label: 'CV / Resume',
+      href: '/CV_Miracle_Steven_Gerrald.pdf',
+    },
+    {
       id: 'github',
       label: 'GitHub',
       href: 'https://github.com/miraclegerrald',
+    },
+    {
+      id: 'instagram',
+      label: 'Instagram',
+      href: 'https://www.instagram.com/@miraclegerrald',
     },
     {
       id: 'linkedin',
@@ -87,14 +98,9 @@ export const portfolioData = {
       href: 'https://www.linkedin.com/in/miracle-steven-gerrald',
     },
     {
-      id: 'youtube',
-      label: 'YouTube',
-      href: 'https://www.youtube.com/@miraclegerrald',
-    },
-    {
-      id: 'instagram',
-      label: 'Instagram',
-      href: 'https://www.instagram.com/miraclegerrald',
+      id: 'discord',
+      label: 'Discord',
+      href: 'https://www.discord.com/miraclegerrald',
     },
   ],
 
@@ -207,6 +213,11 @@ export const portfolioData = {
       id: 'discord',
       label: 'discord',
       href: 'https://discord.com',
+    },
+    {
+      id: 'cv',
+      label: 'resume / cv',
+      href: '/CV_Miracle_Steven_Gerrald.pdf',
     },
   ],
 
