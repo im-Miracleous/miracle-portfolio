@@ -18,11 +18,11 @@ services:
     image: cloudflare/cloudflared:latest
     container_name: miracle-portfolio-tunnel
     restart: unless-stopped
-    profiles:
-      - tunnel
+    # profiles:
+      # - tunnel
     command: tunnel --no-autoupdate run
     environment:
-      TUNNEL_TOKEN: ${CLOUDFLARE_TUNNEL_TOKEN}
+      TUNNEL_TOKEN: eyJhIjoiNDUyNWRiYWNmYzJhNDE4MzdhMmM5ZTc5ODA1OTdiMTkiLCJ0IjoiZDg1NDkzODItZWM3MS00OWIzLWE1MWMtYzliZTVlNmM2MzFkIiwicyI6Ik9HRTVNRE14TVdJdE5qUXhOQzAwWkdSaUxXRXpNall0T0dFNU0ySTBNV1E1T1RVeSJ9
     depends_on:
       portfolio:
         condition: service_healthy
