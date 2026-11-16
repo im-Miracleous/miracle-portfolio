@@ -61,7 +61,7 @@ const WindowContent = memo(function WindowContent({
     case 'links':
       return <LinksWindow soundEnabled={soundEnabled} />;
     case 'faq':
-      return <FaqWindow soundEnabled={soundEnabled} />;
+      return <FaqWindow soundEnabled={soundEnabled} onOpenContact={onOpenContact} />;
     case 'contact':
       return <ContactWindow soundEnabled={soundEnabled} />;
     case 'preview':

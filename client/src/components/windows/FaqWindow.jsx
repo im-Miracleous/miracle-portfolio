@@ -4,7 +4,7 @@ import { portfolioData } from '../../data/portfolioData';
 import { playClickSound } from '../../utils/sound';
 import SectionTitle from '../SectionTitle';
 
-function FaqWindow({ soundEnabled }) {
+function FaqWindow({ soundEnabled, onOpenContact }) {
   const [openId, setOpenId] = useState(null);
 
   const toggleItem = (id) => {
@@ -50,12 +50,22 @@ function FaqWindow({ soundEnabled }) {
                   {faq.link && faq.answer.includes(faq.link.text) ? (
                     <>
                       {faq.answer.split(faq.link.text)[0]}
-                      <a
-                        href={faq.link.href}
-                        className="font-medium underline text-[#f59e0b] dark:text-[#7dd3fc] hover:opacity-80"
-                      >
-                        {faq.link.text}
-                      </a>
+                      {faq.link.action === 'contact' ? (
+                        <button
+                          type="button"
+                          onClick={onOpenContact}
+                          className="font-medium underline text-[#f59e0b] dark:text-[#7dd3fc] hover:opacity-80 cursor-pointer"
+                        >
+                          {faq.link.text}
+                        </button>
+                      ) : (
+                        <a
+                          href={faq.link.href}
+                          className="font-medium underline text-[#f59e0b] dark:text-[#7dd3fc] hover:opacity-80"
+                        >
+                          {faq.link.text}
+                        </a>
+                      )}
                       {faq.answer.split(faq.link.text).slice(1).join(faq.link.text)}
                     </>
                   ) : (

@@ -232,7 +232,7 @@ export const portfolioData = {
         'Sorry if I don\'t get to your message! For urgent matters, work, and other invitations, please email me instead. Thank you!',
       link: {
         text: 'email me',
-        href: 'mailto:miracle.gerrald@gmail.com',
+        action: 'contact',
       },
     },
   ],
