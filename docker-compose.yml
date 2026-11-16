@@ -19,10 +19,10 @@ services:
     container_name: miracle-portfolio-tunnel
     restart: unless-stopped
     # profiles:
-      # - tunnel
+    # - tunnel
     command: tunnel --no-autoupdate run
     environment:
-      TUNNEL_TOKEN: eyJhIjoiNDUyNWRiYWNmYzJhNDE4MzdhMmM5ZTc5ODA1OTdiMTkiLCJ0IjoiZDg1NDkzODItZWM3MS00OWIzLWE1MWMtYzliZTVlNmM2MzFkIiwicyI6Ik9HRTVNRE14TVdJdE5qUXhOQzAwWkdSaUxXRXpNall0T0dFNU0ySTBNV1E1T1RVeSJ9
+      TUNNEL_TOKEN: ${CLOUDFLARE_TUNNEL_TOKEN}
     depends_on:
       portfolio:
         condition: service_healthy
