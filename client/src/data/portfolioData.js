@@ -19,7 +19,7 @@ export const portfolioData = {
     tagline: 'informatics engineering student, full-stack developer, and homelab enjoyer',
     subtitle: 'AI & Cybersecurity Enthusiast',
     role: '3rd Year Student @ MCU',
-    email: 'miraclesteven05@gmail.com',
+    email: 'hello@miracleous.my.id',
     avatarUrl: '/avatar.jpg',
     copyright: '© 2026 Miracle Steven Gerrald',
     bioIntro: "hi! i'm miracle — i build reliable web systems, tinker with self-hosted infrastructure, and lead student tech communities.",

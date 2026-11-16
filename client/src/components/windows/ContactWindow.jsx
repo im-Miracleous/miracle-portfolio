@@ -5,7 +5,7 @@ import { playClickSound } from '../../utils/sound';
 import SectionTitle from '../SectionTitle';
 
 function ContactWindow({ soundEnabled }) {
-  const [form, setForm] = useState({ name: '', email: '', message: '' });
+  const [form, setForm] = useState({ name: '', email: '', message: '', website: '' });
   const [fieldErrors, setFieldErrors] = useState({});
   const [status, setStatus] = useState({ type: 'idle', text: '' });
   const [copied, setCopied] = useState(false);
@@ -57,7 +57,7 @@ function ContactWindow({ soundEnabled }) {
         type: 'success',
         text: payload.message || 'Message sent! Thank you for reaching out.',
       });
-      setForm({ name: '', email: '', message: '' });
+      setForm({ name: '', email: '', message: '', website: '' });
     } catch {
       setStatus({
         type: 'error',
@@ -96,6 +96,16 @@ function ContactWindow({ soundEnabled }) {
       </div>
 
       <form onSubmit={handleSubmit} className="space-y-3">
+        <input
+          type="text"
+          name="website"
+          value={form.website}
+          onChange={handleChange}
+          tabIndex={-1}
+          autoComplete="off"
+          aria-hidden="true"
+          className="hidden"
+        />
         <div>
           <label
             htmlFor="contact-name"
