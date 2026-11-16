@@ -22,8 +22,8 @@ const iconMap = {
 
 function LinksWindow({ soundEnabled }) {
   return (
-    <div className="p-6 sm:p-8 flex flex-col items-center justify-center gap-6">
-      <div className="grid grid-cols-3 gap-6 sm:gap-8 w-full max-w-[380px] place-items-center">
+    <div className="p-5 sm:p-8 flex flex-col items-center justify-center gap-5 sm:gap-6">
+      <div className="flex flex-col gap-2.5 w-full md:grid md:grid-cols-3 md:gap-8 md:max-w-[380px] md:place-items-center">
         {portfolioData.links.map((link) => {
           const Icon = iconMap[link.id] || Github;
           return (
@@ -33,12 +33,12 @@ function LinksWindow({ soundEnabled }) {
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => playClickSound(soundEnabled)}
-              className="group flex flex-col items-center gap-2 focus:outline-none"
+              className="group flex flex-row items-center gap-3.5 w-full rounded-lg border border-zinc-200 dark:border-zinc-700/80 bg-zinc-50/70 dark:bg-zinc-900/50 px-4 py-3 transition-all duration-150 hover:border-[#f59e0b] dark:hover:border-[#7dd3fc] hover:bg-amber-50/50 dark:hover:bg-sky-950/30 md:w-auto md:flex-col md:gap-2 md:border-0 md:bg-transparent md:dark:bg-transparent md:p-0 md:hover:bg-transparent md:dark:hover:bg-transparent focus:outline-none"
             >
-              <div className="flex h-12 w-12 items-center justify-center rounded-xl text-zinc-700 dark:text-zinc-200 transition-transform duration-150 group-hover:-translate-y-1 group-hover:text-[#f59e0b] dark:group-hover:text-[#7dd3fc]">
-                <Icon className="h-9 w-9" strokeWidth={1.75} />
+              <div className="flex h-8 w-8 md:h-12 md:w-12 shrink-0 items-center justify-center rounded-xl text-zinc-700 dark:text-zinc-200 transition-transform duration-150 md:group-hover:-translate-y-1 group-hover:text-[#f59e0b] dark:group-hover:text-[#7dd3fc]">
+                <Icon className="h-6 w-6 md:h-9 md:w-9" strokeWidth={1.75} />
               </div>
-              <span className="font-mono text-xs font-medium text-zinc-600 group-hover:text-zinc-900 dark:text-zinc-300 dark:group-hover:text-white transition-colors text-center">
+              <span className="font-mono text-sm md:text-xs font-medium text-zinc-700 group-hover:text-zinc-900 dark:text-zinc-200 dark:group-hover:text-white transition-colors text-left md:text-center">
                 {link.label}
               </span>
             </a>
@@ -46,7 +46,7 @@ function LinksWindow({ soundEnabled }) {
         })}
       </div>
 
-      <div className="w-full max-w-[340px] rounded-lg border border-zinc-200 dark:border-zinc-700/80 px-4 py-2.5 text-center">
+      <div className="w-full md:max-w-[340px] rounded-lg border border-zinc-200 dark:border-zinc-700/80 px-4 py-2.5 text-center">
         <p className="text-xs text-zinc-500 dark:text-zinc-400">
           clicking any of the links will open a new tab!
         </p>

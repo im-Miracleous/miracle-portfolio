@@ -10,6 +10,7 @@ import LinksWindow from './components/windows/LinksWindow';
 import FaqWindow from './components/windows/FaqWindow';
 import ContactWindow from './components/windows/ContactWindow';
 import MusicPlayer from './components/MusicPlayer';
+import MobileNotice from './components/MobileNotice';
 import { playCloseSound, playOpenSound, playToggleSound } from './utils/sound';
 
 const WINDOW_CONFIG = {
@@ -312,6 +313,8 @@ export default function App() {
       <MusicPlayer soundEnabled={soundEnabled} />
 
       <Footer soundEnabled={soundEnabled} />
+
+      <MobileNotice soundEnabled={soundEnabled} />
     </div>
   );
 }
