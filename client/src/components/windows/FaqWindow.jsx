@@ -16,7 +16,7 @@ function FaqWindow({ soundEnabled }) {
     <div className="p-5 sm:p-6 space-y-4">
       <div>
         <SectionTitle as="h2">frequently asked questions</SectionTitle>
-        <p className="text-xs text-zinc-500 dark:text-zinc-400 mt-0.5">
+        <p className="text-sm md:text-xs text-zinc-500 dark:text-zinc-400 mt-0.5">
           tech stack choices, availability, and my homelab setup
         </p>
       </div>
@@ -35,18 +35,18 @@ function FaqWindow({ soundEnabled }) {
                 aria-expanded={isOpen}
                 className="flex w-full items-center justify-between gap-3 px-4 py-3 text-left cursor-pointer hover:bg-zinc-100/70 dark:hover:bg-zinc-800/50 transition-colors"
               >
-                <span className="text-xs sm:text-sm font-semibold text-zinc-800 dark:text-zinc-100">
+                <span className="text-[15px] md:text-sm font-semibold text-zinc-800 dark:text-zinc-100">
                   {faq.question}
                 </span>
                 <ChevronDown
-                  className={`h-4 w-4 shrink-0 text-zinc-500 dark:text-zinc-400 transition-transform duration-200 ${
+                  className={`h-5 w-5 md:h-4 md:w-4 shrink-0 text-zinc-500 dark:text-zinc-400 transition-transform duration-200 ${
                     isOpen ? 'rotate-180 text-[#f59e0b] dark:text-[#7dd3fc]' : ''
                   }`}
                 />
               </button>
 
               {isOpen && (
-                <div className="px-4 pb-3.5 pt-0.5 text-xs sm:text-[13px] text-zinc-600 dark:text-zinc-300 leading-relaxed border-t border-zinc-200/60 dark:border-zinc-800">
+                <div className="px-4 pb-4 pt-1.5 md:pb-3.5 md:pt-0.5 text-sm md:text-[13px] text-zinc-600 dark:text-zinc-300 leading-relaxed border-t border-zinc-200/60 dark:border-zinc-800">
                   {faq.link && faq.answer.includes(faq.link.text) ? (
                     <>
                       {faq.answer.split(faq.link.text)[0]}
