@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { memo, useState } from 'react';
 import { ExternalLink } from 'lucide-react';
 import { portfolioData } from '../../data/portfolioData';
 import { playClickSound } from '../../utils/sound';
@@ -27,6 +27,7 @@ function ProjectThumbnail({ project, soundEnabled, onPreview }) {
         <img
           src={project.imageUrl}
           alt={project.title}
+          decoding="async"
           onError={() => setImgError(true)}
           className="h-full w-full object-cover transition-transform duration-200 group-hover:scale-105"
         />
@@ -52,7 +53,7 @@ function ProjectThumbnail({ project, soundEnabled, onPreview }) {
   );
 }
 
-export default function WorkWindow({ soundEnabled, onPreviewImage }) {
+function WorkWindow({ soundEnabled, onPreviewImage }) {
   return (
     <div className="p-6 sm:p-7 space-y-7 text-sm text-zinc-700 dark:text-zinc-200">
       <div className="rounded-lg bg-amber-50/90 dark:bg-sky-950/40 border border-amber-200/70 dark:border-sky-800/50 px-4 py-3 text-xs sm:text-[13px] leading-relaxed">
@@ -78,7 +79,7 @@ export default function WorkWindow({ soundEnabled, onPreviewImage }) {
             {portfolioData.tools.map((tool) => (
               <span
                 key={tool}
-                className="rounded-md border border-zinc-200 dark:border-zinc-700 bg-zinc-50/80 dark:bg-zinc-800/60 px-2.5 py-1 text-xs text-zinc-700 dark:text-zinc-200 transition-all duration-150 hover:-translate-y-0.5 hover:border-amber-400 hover:bg-amber-50/90 hover:text-amber-900 dark:hover:border-sky-400 dark:hover:bg-sky-950/70 dark:hover:text-sky-200 cursor-default select-none shadow-xs hover:shadow-sm"
+                className="rounded-md border border-zinc-200 dark:border-zinc-700 bg-zinc-50/80 dark:bg-zinc-800/60 px-2.5 py-1 text-xs text-zinc-700 dark:text-zinc-200 transition-[transform,background-color,border-color,color,box-shadow] duration-150 hover:-translate-y-0.5 hover:border-amber-400 hover:bg-amber-50/90 hover:text-amber-900 dark:hover:border-sky-400 dark:hover:bg-sky-950/70 dark:hover:text-sky-200 cursor-default select-none shadow-xs hover:shadow-sm"
               >
                 {tool}
               </span>
@@ -92,7 +93,7 @@ export default function WorkWindow({ soundEnabled, onPreviewImage }) {
             {portfolioData.development.map((item) => (
               <span
                 key={item}
-                className="rounded-md border border-zinc-200 dark:border-zinc-700 bg-zinc-50/80 dark:bg-zinc-800/60 px-2.5 py-1 text-xs text-zinc-700 dark:text-zinc-200 transition-all duration-150 hover:-translate-y-0.5 hover:border-amber-400 hover:bg-amber-50/90 hover:text-amber-900 dark:hover:border-sky-400 dark:hover:bg-sky-950/70 dark:hover:text-sky-200 cursor-default select-none shadow-xs hover:shadow-sm"
+                className="rounded-md border border-zinc-200 dark:border-zinc-700 bg-zinc-50/80 dark:bg-zinc-800/60 px-2.5 py-1 text-xs text-zinc-700 dark:text-zinc-200 transition-[transform,background-color,border-color,color,box-shadow] duration-150 hover:-translate-y-0.5 hover:border-amber-400 hover:bg-amber-50/90 hover:text-amber-900 dark:hover:border-sky-400 dark:hover:bg-sky-950/70 dark:hover:text-sky-200 cursor-default select-none shadow-xs hover:shadow-sm"
               >
                 {item}
               </span>
@@ -189,3 +190,5 @@ export default function WorkWindow({ soundEnabled, onPreviewImage }) {
     </div>
   );
 }
+
+export default memo(WorkWindow);

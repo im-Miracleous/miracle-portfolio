@@ -1,10 +1,10 @@
-import { useState } from 'react';
+import { memo, useState } from 'react';
 import { Check, Copy, Loader2, Send } from 'lucide-react';
 import { portfolioData } from '../../data/portfolioData';
 import { playClickSound } from '../../utils/sound';
 import SectionTitle from '../SectionTitle';
 
-export default function ContactWindow({ soundEnabled }) {
+function ContactWindow({ soundEnabled }) {
   const [form, setForm] = useState({ name: '', email: '', message: '' });
   const [fieldErrors, setFieldErrors] = useState({});
   const [status, setStatus] = useState({ type: 'idle', text: '' });
@@ -195,3 +195,5 @@ export default function ContactWindow({ soundEnabled }) {
     </div>
   );
 }
+
+export default memo(ContactWindow);

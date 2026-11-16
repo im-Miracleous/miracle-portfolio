@@ -127,6 +127,7 @@
 
 .animate-float-slow {
   animation: floatSlow 4.5s ease-in-out infinite;
+  will-change: transform;
 }
 
 @keyframes waveSlide {
@@ -140,8 +141,21 @@
 
 .animate-wave-slow {
   animation: waveSlide 16s linear infinite;
+  will-change: transform;
+  backface-visibility: hidden;
 }
 
 .animate-wave-medium {
   animation: waveSlide 11s linear infinite;
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-float-slow,
+  .animate-wave-slow,
+  .animate-wave-medium {
+    animation: none;
+    will-change: auto;
+  }
 }

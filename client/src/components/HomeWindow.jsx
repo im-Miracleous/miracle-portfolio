@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { FolderOpen, HelpCircle, Info, Link2, Mail } from 'lucide-react';
 import { portfolioData } from '../data/portfolioData';
 
@@ -9,7 +10,7 @@ const navItems = [
   { id: 'contact', label: 'contact', Icon: Mail },
 ];
 
-export default function HomeWindow({ openWindows, onOpenWindow }) {
+function HomeWindow({ openWindowIds, onOpenWindow }) {
   const { profile } = portfolioData;
 
   return (
@@ -60,7 +61,7 @@ export default function HomeWindow({ openWindows, onOpenWindow }) {
           className="mt-7 md:mt-9 flex flex-wrap justify-center gap-4 w-full max-w-[290px] min-[380px]:max-w-[320px] md:max-w-[460px] md:grid md:grid-cols-5 md:gap-6"
         >
           {navItems.map(({ id, label, Icon }) => {
-            const isOpen = openWindows.some((w) => w.id === id);
+            const isOpen = openWindowIds.has(id);
             return (
               <button
                 key={id}
@@ -69,7 +70,7 @@ export default function HomeWindow({ openWindows, onOpenWindow }) {
                 className="group flex flex-col items-center gap-1.5 md:gap-2 focus:outline-none cursor-pointer"
               >
                 <div
-                  className={`relative flex h-[74px] w-[74px] md:h-14 md:w-14 items-center justify-center rounded-xl border transition-all duration-150 group-hover:-translate-y-1 group-active:translate-y-0 ${
+                  className={`relative flex h-[74px] w-[74px] md:h-14 md:w-14 items-center justify-center rounded-xl border transition-[transform,background-color,border-color,color,box-shadow] duration-150 group-hover:-translate-y-1 group-active:translate-y-0 ${
                     isOpen
                       ? 'border-[#f59e0b] bg-amber-100/90 text-[#d97706] dark:border-sky-400 dark:bg-[#2a5999] dark:text-sky-200 shadow-sm'
                       : 'border-amber-200/70 bg-amber-50/90 text-zinc-700 group-hover:border-amber-400 dark:border-[#2e5a96] dark:bg-[#1f4478] dark:text-white dark:group-hover:border-sky-300/80 md:border-zinc-300/90 md:bg-zinc-50/70 md:group-hover:border-zinc-500 md:group-hover:bg-white md:dark:border-zinc-600/80 md:dark:bg-zinc-800/60 md:dark:text-zinc-200 md:dark:group-hover:border-sky-300/70 md:dark:group-hover:bg-zinc-800'
@@ -94,3 +95,5 @@ export default function HomeWindow({ openWindows, onOpenWindow }) {
     </section>
   );
 }
+
+export default memo(HomeWindow);

@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { FileText, Github, Instagram, Linkedin, Youtube } from 'lucide-react';
 import { portfolioData } from '../../data/portfolioData';
 import { playClickSound } from '../../utils/sound';
@@ -19,7 +20,7 @@ const iconMap = {
   cv: FileText,
 };
 
-export default function LinksWindow({ soundEnabled }) {
+function LinksWindow({ soundEnabled }) {
   return (
     <div className="p-6 sm:p-8 flex flex-col items-center justify-center gap-6">
       <div className="grid grid-cols-3 gap-6 sm:gap-8 w-full max-w-[380px] place-items-center">
@@ -53,3 +54,5 @@ export default function LinksWindow({ soundEnabled }) {
     </div>
   );
 }
+
+export default memo(LinksWindow);

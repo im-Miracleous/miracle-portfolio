@@ -1,39 +1,44 @@
-import { useEffect, useRef, useState } from 'react';
+import { memo, useEffect, useRef, useState } from 'react';
 import { playClickSound } from '../utils/sound';
 
 // Place your background music audio file in client/public/ and update this path:
 const BG_MUSIC_SRC = '/music.mp3';
 
-export default function MusicPlayer({ soundEnabled }) {
+function MusicPlayer({ soundEnabled }) {
   const [isPlaying, setIsPlaying] = useState(false);
   const audioRef = useRef(null);
 
   useEffect(() => {
+    return () => {
+      const audio = audioRef.current;
+      if (audio) {
+        audio.pause();
+        audioRef.current = null;
+      }
+    };
+  }, []);
+
+  const getOrCreateAudio = () => {
+    if (audioRef.current) return audioRef.current;
     const audio = new Audio(BG_MUSIC_SRC);
     audio.loop = true;
     audio.volume = 0.35;
+    audio.preload = 'none';
+    audio.addEventListener('ended', () => setIsPlaying(false));
     audioRef.current = audio;
-
-    const handleEnded = () => setIsPlaying(false);
-    audio.addEventListener('ended', handleEnded);
-
-    return () => {
-      audio.removeEventListener('ended', handleEnded);
-      audio.pause();
-      audioRef.current = null;
-    };
-  }, []);
+    return audio;
+  };
 
   const toggleMusic = () => {
     playClickSound(soundEnabled);
 
-    if (!audioRef.current) return;
+    const audio = getOrCreateAudio();
 
     if (isPlaying) {
-      audioRef.current.pause();
+      audio.pause();
       setIsPlaying(false);
     } else {
-      audioRef.current
+      audio
         .play()
         .then(() => {
           setIsPlaying(true);
@@ -52,10 +57,10 @@ export default function MusicPlayer({ soundEnabled }) {
         onClick={toggleMusic}
         title={isPlaying ? 'Pause background music' : 'Play background music'}
         aria-label={isPlaying ? 'Pause background music' : 'Play background music'}
-        className={`group relative flex items-center gap-2 rounded-full border px-2.5 py-1.5 sm:px-3 shadow-sm backdrop-blur-xs transition-all duration-200 hover:-translate-y-0.5 cursor-pointer ${
+        className={`group relative flex items-center gap-2 rounded-full border px-2.5 py-1.5 sm:px-3 shadow-sm transition-[transform,background-color,border-color,color,box-shadow] duration-200 hover:-translate-y-0.5 cursor-pointer ${
           isPlaying
-            ? 'border-emerald-400/80 bg-white/95 text-emerald-700 dark:border-emerald-400/70 dark:bg-zinc-900/90 dark:text-emerald-300 shadow-emerald-500/10'
-            : 'border-zinc-300/80 bg-white/85 text-zinc-600 hover:border-amber-400 dark:border-zinc-700/80 dark:bg-zinc-900/80 dark:text-zinc-300 dark:hover:border-sky-400'
+            ? 'border-emerald-400/80 bg-white/95 text-emerald-700 dark:border-emerald-400/70 dark:bg-zinc-900/95 dark:text-emerald-300 shadow-emerald-500/10'
+            : 'border-zinc-300/80 bg-white/95 text-zinc-600 hover:border-amber-400 dark:border-zinc-700/80 dark:bg-zinc-900/95 dark:text-zinc-300 dark:hover:border-sky-400'
         }`}
       >
         {/* Cute Mascot SVG with flower on lilypad */}
@@ -117,3 +122,5 @@ export default function MusicPlayer({ soundEnabled }) {
     </div>
   );
 }
+
+export default memo(MusicPlayer);

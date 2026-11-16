@@ -1,10 +1,10 @@
-import { useState } from 'react';
+import { memo, useState } from 'react';
 import { ChevronDown } from 'lucide-react';
 import { portfolioData } from '../../data/portfolioData';
 import { playClickSound } from '../../utils/sound';
 import SectionTitle from '../SectionTitle';
 
-export default function FaqWindow({ soundEnabled }) {
+function FaqWindow({ soundEnabled }) {
   const [openId, setOpenId] = useState(null);
 
   const toggleItem = (id) => {
@@ -70,3 +70,5 @@ export default function FaqWindow({ soundEnabled }) {
     </div>
   );
 }
+
+export default memo(FaqWindow);

@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import DesktopBackground from './components/DesktopBackground';
 import TopBar from './components/TopBar';
 import Footer from './components/Footer';
@@ -45,6 +45,41 @@ const WINDOW_CONFIG = {
   },
 };
 
+const WindowContent = memo(function WindowContent({
+  id,
+  soundEnabled,
+  previewImage,
+  onOpenContact,
+  onPreviewImage,
+}) {
+  switch (id) {
+    case 'about':
+      return <AboutWindow onOpenContact={onOpenContact} />;
+    case 'work':
+      return <WorkWindow soundEnabled={soundEnabled} onPreviewImage={onPreviewImage} />;
+    case 'links':
+      return <LinksWindow soundEnabled={soundEnabled} />;
+    case 'faq':
+      return <FaqWindow soundEnabled={soundEnabled} />;
+    case 'contact':
+      return <ContactWindow soundEnabled={soundEnabled} />;
+    case 'preview':
+      if (!previewImage) return null;
+      return (
+        <div className="p-3 sm:p-4 bg-zinc-100/80 dark:bg-zinc-950/60 flex items-center justify-center">
+          <img
+            src={previewImage.src}
+            alt={previewImage.alt}
+            decoding="async"
+            className="max-h-[65vh] w-auto max-w-full rounded-lg object-contain shadow-sm"
+          />
+        </div>
+      );
+    default:
+      return null;
+  }
+});
+
 export default function App() {
   const [darkMode, setDarkMode] = useState(() => {
     if (typeof window === 'undefined') return false;
@@ -60,6 +95,9 @@ export default function App() {
   const [openWindows, setOpenWindows] = useState([]);
   const [previewImage, setPreviewImage] = useState(null);
   const topZRef = useRef(30);
+  const openWindowsRef = useRef(openWindows);
+  openWindowsRef.current = openWindows;
+  const closeTimersRef = useRef({});
 
   useEffect(() => {
     document.documentElement.classList.toggle('dark', darkMode);
@@ -70,17 +108,38 @@ export default function App() {
     localStorage.setItem('miracle_sound', String(soundEnabled));
   }, [soundEnabled]);
 
+  useEffect(() => {
+    const timers = closeTimersRef.current;
+    return () => {
+      Object.values(timers).forEach((timerId) => clearTimeout(timerId));
+    };
+  }, []);
+
   const focusWindow = useCallback((id) => {
-    topZRef.current += 1;
-    const nextZ = topZRef.current;
-    setOpenWindows((prev) =>
-      prev.map((win) => (win.id === id ? { ...win, zIndex: nextZ } : win))
-    );
+    setOpenWindows((prev) => {
+      if (prev.length <= 1) return prev;
+      const target = prev.find((w) => w.id === id);
+      if (!target) return prev;
+      const isAlreadyTop = prev.every((w) => w.id === id || w.zIndex < target.zIndex);
+      if (isAlreadyTop) return prev;
+
+      const maxZ = prev.reduce((max, w) => (w.zIndex > max ? w.zIndex : max), topZRef.current);
+      topZRef.current = maxZ + 1;
+      const nextZ = topZRef.current;
+      return prev.map((win) => (win.id === id ? { ...win, zIndex: nextZ } : win));
+    });
   }, []);
 
   const openWindow = useCallback(
     (id) => {
       if (!WINDOW_CONFIG[id]) return;
+
+      if (closeTimersRef.current[id]) {
+        clearTimeout(closeTimersRef.current[id]);
+        delete closeTimersRef.current[id];
+      }
+
+      playOpenSound(soundEnabled);
 
       setOpenWindows((prev) => {
         const exists = prev.find((w) => w.id === id);
@@ -88,13 +147,11 @@ export default function App() {
         const nextZ = topZRef.current;
 
         if (exists) {
-          playOpenSound(soundEnabled);
           return prev.map((w) =>
             w.id === id ? { ...w, zIndex: nextZ, closing: false } : w
           );
         }
 
-        playOpenSound(soundEnabled);
         const cascadeStep = (prev.length % 4) * 18;
         const base = WINDOW_CONFIG[id].defaultOffset;
         return [
@@ -120,7 +177,13 @@ export default function App() {
       setOpenWindows((prev) =>
         prev.map((w) => (w.id === id ? { ...w, closing: true } : w))
       );
-      setTimeout(() => {
+
+      if (closeTimersRef.current[id]) {
+        clearTimeout(closeTimersRef.current[id]);
+      }
+
+      closeTimersRef.current[id] = setTimeout(() => {
+        delete closeTimersRef.current[id];
         setOpenWindows((prev) =>
           prev.filter((w) => !(w.id === id && w.closing))
         );
@@ -138,28 +201,34 @@ export default function App() {
   // Close topmost window with Escape key
   useEffect(() => {
     const handleKeyDown = (e) => {
-      if (e.key !== 'Escape' || openWindows.length === 0) return;
-      const topWin = openWindows.reduce((highest, curr) =>
+      if (e.key !== 'Escape') return;
+      const active = openWindowsRef.current.filter((w) => !w.closing);
+      if (active.length === 0) return;
+      const topWin = active.reduce((highest, curr) =>
         curr.zIndex > highest.zIndex ? curr : highest
       );
       closeWindow(topWin.id);
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [openWindows, closeWindow]);
+  }, [closeWindow]);
 
-  const handleToggleTheme = () => {
+  const handleToggleTheme = useCallback(() => {
     playToggleSound(soundEnabled);
     setDarkMode((prev) => !prev);
-  };
+  }, [soundEnabled]);
 
-  const handleToggleSound = () => {
-    const next = !soundEnabled;
-    if (next) {
-      playToggleSound(true);
-    }
-    setSoundEnabled(next);
-  };
+  const handleToggleSound = useCallback(() => {
+    setSoundEnabled((prev) => {
+      const next = !prev;
+      if (next) {
+        playToggleSound(true);
+      }
+      return next;
+    });
+  }, []);
+
+  const openContactWindow = useCallback(() => openWindow('contact'), [openWindow]);
 
   const openPreview = useCallback(
     (image) => {
@@ -169,33 +238,22 @@ export default function App() {
     [openWindow]
   );
 
-  const renderWindowContent = (id) => {
-    switch (id) {
-      case 'about':
-        return <AboutWindow onOpenContact={() => openWindow('contact')} />;
-      case 'work':
-        return <WorkWindow soundEnabled={soundEnabled} onPreviewImage={openPreview} />;
-      case 'links':
-        return <LinksWindow soundEnabled={soundEnabled} />;
-      case 'faq':
-        return <FaqWindow soundEnabled={soundEnabled} />;
-      case 'contact':
-        return <ContactWindow soundEnabled={soundEnabled} />;
-      case 'preview':
-        if (!previewImage) return null;
-        return (
-          <div className="p-3 sm:p-4 bg-zinc-100/80 dark:bg-zinc-950/60 flex items-center justify-center">
-            <img
-              src={previewImage.src}
-              alt={previewImage.alt}
-              className="max-h-[65vh] w-auto max-w-full rounded-lg object-contain shadow-sm"
-            />
-          </div>
-        );
-      default:
-        return null;
-    }
-  };
+  const openIdsKey = openWindows.map((w) => w.id).join(',');
+  const openWindowIds = useMemo(
+    () => new Set(openIdsKey ? openIdsKey.split(',') : []),
+    [openIdsKey]
+  );
+
+  const hasVisibleWindow = openWindows.some((w) => !w.closing);
+
+  const handleBackdropClick = useCallback(() => {
+    const active = openWindowsRef.current.filter((w) => !w.closing);
+    if (active.length === 0) return;
+    const topWin = active.reduce((highest, curr) =>
+      curr.zIndex > highest.zIndex ? curr : highest
+    );
+    closeWindow(topWin.id);
+  }, [closeWindow]);
 
   return (
     <div className="relative h-[100dvh] w-screen overflow-hidden flex items-start pt-20 md:items-center md:pt-0 justify-center">
@@ -209,21 +267,14 @@ export default function App() {
       />
 
       <main className="relative z-10 flex items-center justify-center px-4 md:pb-8">
-        <HomeWindow openWindows={openWindows} onOpenWindow={openWindow} />
+        <HomeWindow openWindowIds={openWindowIds} onOpenWindow={openWindow} />
       </main>
 
-      {openWindows.some((w) => !w.closing) && (
+      {hasVisibleWindow && (
         <div
           aria-hidden="true"
-          onClick={() => {
-            const active = openWindows.filter((w) => !w.closing);
-            if (active.length === 0) return;
-            const topWin = active.reduce((highest, curr) =>
-              curr.zIndex > highest.zIndex ? curr : highest
-            );
-            closeWindow(topWin.id);
-          }}
-          className="animate-backdrop-in fixed inset-0 z-20 bg-zinc-950/35 backdrop-blur-[1px] md:hidden"
+          onClick={handleBackdropClick}
+          className="animate-backdrop-in fixed inset-0 z-20 bg-zinc-950/40 md:hidden"
         />
       )}
 
@@ -247,7 +298,13 @@ export default function App() {
             onClose={closeWindow}
             onMove={moveWindow}
           >
-            {renderWindowContent(win.id)}
+            <WindowContent
+              id={win.id}
+              soundEnabled={soundEnabled}
+              previewImage={win.id === 'preview' ? previewImage : null}
+              onOpenContact={openContactWindow}
+              onPreviewImage={openPreview}
+            />
           </DraggableWindow>
         );
       })}

@@ -1,9 +1,9 @@
-import { useState } from 'react';
+import { memo, useState } from 'react';
 import { Download } from 'lucide-react';
 import { portfolioData } from '../../data/portfolioData';
 import SectionTitle from '../SectionTitle';
 
-export default function AboutWindow({ onOpenContact }) {
+function AboutWindow({ onOpenContact }) {
   const { profile } = portfolioData;
   const [imgError, setImgError] = useState(false);
 
@@ -13,6 +13,7 @@ export default function AboutWindow({ onOpenContact }) {
       <img
         src={profile.avatarUrl}
         alt={profile.fullName}
+        decoding="async"
         onError={() => setImgError(true)}
         className="h-full w-full object-cover"
       />
@@ -150,3 +151,5 @@ export default function AboutWindow({ onOpenContact }) {
     </div>
   );
 }
+
+export default memo(AboutWindow);
